@@ -6,7 +6,7 @@ import authRoute from "./routes/auth.route.js";
 import messageRoute from "./routes/message.route.js";
 import { connectDB } from "./lib/db.js";
 import { ENV } from "./lib/env.js";
-
+import cors from "cors"
 dotenv.config(); // ✅ call after import
 
 const app = express();
@@ -15,7 +15,9 @@ const PORT = ENV.PORT || 3000;
 
 // Middlewares
 app.use(express.json()); //req.body
+app.use(cors({origin:ENV.CLIENT_URL,credentials:true}))
 app.use(cookieParser());
+
 
 
 // API Routes
