@@ -143,3 +143,5 @@ const SignUpPages = () => {
 };
 
 export default SignUpPages;
+
+
