@@ -10,12 +10,12 @@ const LoginPages = () => {
       email: "",
       password: "",
     });
-   const { Login, isLoggingUp } = useAuthStore();
+   const { login, isLoggingUp } = useAuthStore();
   
     const handleSubmit = (e) => {
       e.preventDefault();
   
-      Login(formData);
+      login(formData);
     };
   return (
       <div className="w-full flex items-center justify-center p-4 bg-slate-900">
