@@ -1,20 +1,20 @@
+import dotenv from "dotenv"; // ✅ import first
+dotenv.config(); // ✅ call after import
 import express from "express";
 import cookieParser from "cookie-parser";
-import dotenv from "dotenv"; // ✅ import first
 import path from "path";
 import authRoute from "./routes/auth.route.js";
 import messageRoute from "./routes/message.route.js";
 import { connectDB } from "./lib/db.js";
 import { ENV } from "./lib/env.js";
 import cors from "cors"
-dotenv.config(); // ✅ call after import
 
 const app = express();
 const __dirname = path.resolve();
 const PORT = ENV.PORT || 3000;
 
 // Middlewares
-app.use(express.json()); //req.body
+app.use(express.json({limit:"5mb"})); //req.body
 app.use(cors({origin:ENV.CLIENT_URL,credentials:true}))
 app.use(cookieParser());
 
@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 // API Routes
 app.use("/api/auth", authRoute);
-app.use("/api/message", messageRoute);
+app.use("/api/messages", messageRoute);
 
 // Serve frontend build in production
 if (ENV.NODE_ENV === "production") {

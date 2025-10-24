@@ -7,7 +7,7 @@
         isCheckingAuth: true,
         isSigningUp: false,
         isLoggingIn: false,
-
+        isUpdateProfile:false,
         // 🔹 Check if user is authenticated
         checkAuth: async () => {
             try {
@@ -59,6 +59,21 @@
             } catch (error) {
                 toast.error("Error logging out")
                 console.log("Logout error:", error)
+            }
+        },
+
+        updateProfile:async(data) => {
+            set({isUpdateProfile:true})
+            try {
+                const res = await axiosInstance.put("/auth/update-profile", data);
+                set({ authUser:res.data});
+                toast.success("Profile updated successfully");                
+            } catch (error) {
+                console.log("Error in update profile " , error);
+                toast.error(error.response.data.message);
+
+            }finally{
+                set({isUpdateProfile:false})
             }
         }
 
