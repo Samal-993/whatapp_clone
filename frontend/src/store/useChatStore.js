@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 export const useChatStore = create((set, get) => ({
     allContacts:[],
     chats:[],
-    message:[],
+    messages:[],
     activeTab:"chats",
     selectedUser:null,
     isUsersLoading:false,
@@ -42,6 +42,19 @@ export const useChatStore = create((set, get) => ({
       toast.error(error.response.data.message);
     } finally {
       set({ isUsersLoading: false });
+    }
+  },
+
+  getMessagesByUserId:async(userId) => {
+    set({isMessagesLoading:true});
+    try {
+      const  res = await axiosInstance.get(`/messages/${userId}`);
+      set({messaes:res.data})
+      
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Something want wrong")
+    } finally{
+      set({ isMessagesLoading:false})
     }
   }
 
