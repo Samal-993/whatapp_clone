@@ -4,6 +4,7 @@ import Message from "../models/message.js";
 // Importing the User model (used to fetch user/contact details)
 import User from "../models/user.model.js";
 
+import cloudinary from '../lib/cloudinary.js'
 // ---------------------- Get All Contacts Controller ----------------------
 export const getAllContacts = async (req, res) => {
   try {

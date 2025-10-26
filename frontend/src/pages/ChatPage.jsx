@@ -12,7 +12,7 @@ import ChatContainer from '../component/ChatContainer.jsx';
 const ChatPage = () => {
   const {activeTab, selectedUser} = useChatStore();
   return (
-    <div className='relative w-full max-w-6xl h-[800px]'>
+    <div className='relative w-full max-w-6xl h-[700px]'>
       <BorderAnimatedContainer>
         {/* LEFT SIDE */}
         <div className='w-80 bg-slate-800/50 backdrop-blue-sm flex flex-col '>
@@ -29,8 +29,8 @@ const ChatPage = () => {
         {selectedUser ? <ChatContainer/>:<NoConversationPlaceholder/>}
         </div>
       </BorderAnimatedContainer>
-      chatgpt
-     <button >Logout</button>
+      
+     {/* <button >Logout</button> */}
     </div>
   )
 }
